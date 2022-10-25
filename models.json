@@ -1,0 +1,15 @@
+{
+    "Multi_Classification" :
+        {
+            "svm_l" : "SVM_Linear"
+        },
+    "Bin_Classification" : [
+
+    ],
+    "Regression" : [
+
+    ],
+    "Clustering" : [
+
+    ]
+}
