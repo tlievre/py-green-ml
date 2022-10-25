@@ -22,8 +22,8 @@ def SVM_Linear(X_train,y_train,X_test,y_test):
     clf = LinearSVC()
     
     hparam = {
-        "tol" : np.linspace(1e-5,1e-2,10),
-        "C" : np.linspace(1e-4,1,10)
+        "tol" : np.linspace(1e-5,1e-2,5),
+        "C" : np.linspace(1e-4,1,5)
     }
     
     grid = GridSearchCV(clf, hparam, cv=10,verbose=True)

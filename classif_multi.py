@@ -25,11 +25,19 @@ def multi_classifier(X_train, y_train, X_test, y_test, model):
     y_pred = clf(X_train, y_train, X_test, y_test)
     
     acc = metrics.accuracy_score(y_test,y_pred)
-    prec = metrics.precision_score(y_test,y_pred)
-    rec = metrics.recall_score(y_test,y_pred)
-    f1 = metrics.f1_score(y_test,y_pred)
-    auc = metrics.roc_auc_score(y_test,y_pred)
+    prec_micro = metrics.precision_score(y_test,y_pred,average = "micro")
+    prec_macro = metrics.precision_score(y_test,y_pred,average = "macro")
+    rec_micro = metrics.recall_score(y_test,y_pred,average = "micro")
+    rec_macro = metrics.recall_score(y_test,y_pred,average = "macro")
+    f1_micro = metrics.f1_score(y_test,y_pred,average = "micro")
+    f1_macro = metrics.f1_score(y_test,y_pred,average = "macro")
     
-    return {"accuracy" : acc,"precision": prec,"recall" : rec,"f1" : f1,"auc": auc}
+    return {"accuracy" : acc,
+            "precision_micro": prec_micro,
+            "precision_macro": prec_macro,
+            "recall_micro" : rec_micro,
+            "recall_macro" : rec_macro,
+            "f1_micro" : f1_micro,
+            "f1_macro" : f1_macro}
     
     
