@@ -1,0 +1,6 @@
+numpy
+pandas
+seaborn
+tqdm
+scikit-learn
+torch #no CUDA
