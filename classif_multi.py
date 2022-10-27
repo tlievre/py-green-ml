@@ -1,17 +1,20 @@
 # coding: utf-8
 
-import json
-import pandas as pd
-import greenml.models as models
 from sklearn import metrics
-
 from greenml.ml_method import ML_method       
 
 
 class Multi_Classifier(ML_method):
+    """
+
+    Args:
+        ML_method (_type_): _description_
+    """
     
     def get_metrics(self) :
-            
+        """_summary_
+        """
+                    
         acc = metrics.accuracy_score(self.y_test,self.y_pred)
         prec_micro = metrics.precision_score(self.y_test,self.y_pred,average = "micro")
         prec_macro = metrics.precision_score(self.y_test,self.y_pred,average = "macro")

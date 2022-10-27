@@ -1,21 +1,21 @@
 from sklearn.model_selection import GridSearchCV
-from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
 import warnings
 warnings.filterwarnings("ignore")
 
 def SVM_Linear(X_train,y_train,X_test,nb_fold=10):
-    """_summary_
+    """ Apply Cross validation on C and tol hparameters of LinearSVC from scikit-learn
+    and make a prediction with the best hparameters
 
     Args:
-        X_train (_type_): _description_
-        y_train (_type_): _description_
-        X_test (_type_): _description_
-        y_test (_type_): _description_
+        X_train (pandas Dataframe): train set 
+        y_train (pandas Series): train labels
+        X_test (pandas Dataframe): test set
+        nb_fold (int) : number of fold for cross validation
 
     Returns:
-        _type_: _description_
+        array: predictions of test labels
     """
     from sklearn.svm import LinearSVC
     
