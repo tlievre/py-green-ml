@@ -5,7 +5,7 @@ import numpy as np
 import warnings
 warnings.filterwarnings("ignore")
 
-def SVM_Linear(X_train,y_train,X_test,y_test):
+def SVM_Linear(X_train,y_train,X_test,nb_fold=10):
     """_summary_
 
     Args:
@@ -26,7 +26,7 @@ def SVM_Linear(X_train,y_train,X_test,y_test):
         "C" : np.linspace(1e-4,1,5)
     }
     
-    grid = GridSearchCV(clf, hparam, cv=10,verbose=True)
+    grid = GridSearchCV(clf, hparam, cv=nb_fold,verbose=True)
 
     grid.fit(X_train, y_train)
     

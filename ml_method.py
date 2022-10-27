@@ -3,7 +3,6 @@
 import json
 import pandas as pd
 import greenml.models as models
-from sklearn import metrics
 
 class ML_method :
     """_summary_
@@ -36,12 +35,12 @@ class ML_method :
         
         self.metrics = {}
         
-    def run(self) :
+    def run(self,nb_fold) :
         
         token_list = json.load(open("greenml/models.json")) # voir si ça marche 
         tok = token_list[self.task][self.token]
         
         self.model = getattr(models,tok)
         
-        self.y_pred = self.model(self.X_train, self.y_train, self.X_test, self.y_test)
+        self.y_pred = self.model(self.X_train, self.y_train, self.X_test, nb_fold)
         
