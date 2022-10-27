@@ -27,7 +27,7 @@ def split_dataset_location(dataset_location, variable, recoding=False,
         raise ValueError("variable must be a string")
     X = pd.read_csv(dataset_location)
     y = X[f"{variable}"]
-    X = df.drop(variable, axis=1)
+    X = X.drop(variable, axis=1)
 
     if recoding:
         ## Insert code to recode nominal
