@@ -1,4 +1,3 @@
-from pyexpat import XML_PARAM_ENTITY_PARSING_ALWAYS
 from sklearn.model_selection import GridSearchCV
 import numpy as np
 
