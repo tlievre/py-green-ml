@@ -2,7 +2,7 @@
 
 import json
 import pandas as pd
-import greenml.models as models
+import Projet_tut_test.greenml.runners.models as models
 
 class ML_method :
     """_summary_
