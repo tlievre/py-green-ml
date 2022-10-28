@@ -21,9 +21,9 @@ class ML_method :
         self.data_y_var = config["y"][0]
         self.token = config["mod_token"][0]
         
-        # data load
-        data_train = pd.read_csv(str(self.data_path) + str(self.data_name) + "_train.csv")
-        data_test = pd.read_csv(str(self.data_path) + str(self.data_name) + "_test.csv")
+        # data load /!\ à modifier dans REDIS
+        data_train = pd.read_csv(str(self.data_path) + str(self.data_name) + "/train.csv")
+        data_test = pd.read_csv(str(self.data_path) + str(self.data_name) + "/test.csv")
 
         # train/test split
         X_train = data_train.loc[:, data_train.columns != self.data_y_var] # ?? for clust
