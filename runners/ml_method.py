@@ -2,7 +2,9 @@
 
 import json
 import pandas as pd
-import greenml.runners.models as models
+import importlib
+
+
 
 class ML_method :
     """_summary_
@@ -50,6 +52,10 @@ class ML_method :
         
         token_list = json.load(open("greenml/models.json")) # /!\ To fix LORYS !!
         tok = token_list[self.task][self.token]
+        
+        tok2 = tok.lower()
+        
+        models = importlib.import_module("greenml.models."+tok2)
         
         self.model = getattr(models,tok)
         
