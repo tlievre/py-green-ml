@@ -4,8 +4,6 @@ import json
 import pandas as pd
 import importlib
 
-
-
 class ML_method :
     """_summary_
     """
