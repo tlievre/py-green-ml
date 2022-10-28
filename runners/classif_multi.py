@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from sklearn import metrics
-from Projet_tut_test.greenml.runners.ml_method import ML_method
+from greenml.runners.ml_method import ML_method
 
 class Multi_Classifier(ML_method):
     """

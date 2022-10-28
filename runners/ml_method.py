@@ -2,7 +2,7 @@
 
 import json
 import pandas as pd
-import Projet_tut_test.greenml.runners.models as models
+import greenml.runners.models as models
 
 class ML_method :
     """_summary_
@@ -48,7 +48,7 @@ class ML_method :
             nb_fold (int, optional): _description_. Defaults to 10.
         """
         
-        token_list = json.load(open("greenml/models.json")) # voir si ça marche 
+        token_list = json.load(open("greenml/models.json")) # /!\ To fix LORYS !!
         tok = token_list[self.task][self.token]
         
         self.model = getattr(models,tok)

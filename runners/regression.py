@@ -1,5 +1,5 @@
 from sklearn import metrics
-from Projet_tut_test.greenml.runners.ml_method import ML_method
+from greenml.runners.ml_method import ML_method
 
 class Regressor(ML_method):
     """
