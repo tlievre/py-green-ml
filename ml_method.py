@@ -53,5 +53,7 @@ class ML_method :
         
         self.model = getattr(models,tok)
         
-        self.y_pred = self.model(self.X_train, self.y_train, self.X_test, nb_fold)
+        clf = self.model(self.X_train, self.y_train, self.X_test)
+        
+        self.y_pred = clf.fit_CV(nb_fold)
         
