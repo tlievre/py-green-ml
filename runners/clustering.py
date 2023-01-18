@@ -13,7 +13,6 @@ class Cluster(ML_method):
         """
 
         # /!\ to complete
+        y_pred = self.__run()
 
-        self.metrics = {
-            # /!\ to complete
-        }
+        return {}

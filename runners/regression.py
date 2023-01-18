@@ -11,9 +11,8 @@ class Regressor(ML_method):
     def get_metrics(self):
         """_summary_
         """
+        
+        y_pred = self.__run()
 
         # /!\ to complete
-
-        self.metrics = {
-            # /!\ to complete
-        }
+        return {}

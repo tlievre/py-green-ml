@@ -11,13 +11,16 @@ class Binar_Classifier(ML_method):
     def get_metrics(self):
         """_summary_
         """
+        y_pred = self.__run()
 
-        acc = metrics.accuracy_score(self.y_test, self.y_pred)
-        prec = metrics.precision_score(self.y_test, self.y_pred)
-        rec = metrics.recall_score(self.y_test, self.y_pred)
-        f1 = metrics.f1_score(self.y_test, self.y_pred)
+        acc = metrics.accuracy_score(self.__y_test, y_pred)
+        prec = metrics.precision_score(self.__y_test, y_pred)
+        rec = metrics.recall_score(self.__y_test, y_pred)
+        f1 = metrics.f1_score(self.__y_test, y_pred)
 
-        self.metrics = {"accuracy": acc,
-                        "precision": prec,
-                        "recall": rec,
-                        "f1": f1}
+        return {
+            "accuracy": acc,
+            "precision": prec,
+            "recall": rec,
+            "f1": f1
+        }
