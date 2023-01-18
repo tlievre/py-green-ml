@@ -13,19 +13,19 @@ class Multi_Classifier(ML_method):
     def get_metrics(self):
         """_summary_
         """
-        y_pred = self.__run()
+        y_pred = self._run()
 
-        acc = metrics.accuracy_score(self.__y_test, y_pred)
+        acc = metrics.accuracy_score(self._y_test, y_pred)
         prec_micro = metrics.precision_score(
-            self.__y_test, y_pred, average="micro")
+            self._y_test, y_pred, average="micro")
         prec_macro = metrics.precision_score(
-            self.__y_test, y_pred, average="macro")
+            self._y_test, y_pred, average="macro")
         rec_micro = metrics.recall_score(
-            self.__y_test, y_pred, average="micro")
+            self._y_test, y_pred, average="micro")
         rec_macro = metrics.recall_score(
-            self.__y_test, y_pred, average="macro")
-        f1_micro = metrics.f1_score(self.__y_test, y_pred, average="micro")
-        f1_macro = metrics.f1_score(self.__y_test, y_pred, average="macro")
+            self._y_test, y_pred, average="macro")
+        f1_micro = metrics.f1_score(self._y_test, y_pred, average="micro")
+        f1_macro = metrics.f1_score(self._y_test, y_pred, average="macro")
 
         return {
             "accuracy": acc,
