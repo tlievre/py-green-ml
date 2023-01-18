@@ -1,12 +1,13 @@
 from logging import warning
 from sklearn.model_selection import GridSearchCV
 import pandas as pd
+from abc import ABC
 
 
 class ErrorMethod(Exception):
     pass
 
-class Model:
+class Model(ABC):
 
     def __init__(self, X_train, y_train, X_test):
 
@@ -32,6 +33,7 @@ class Model:
         if isinstance(self.method, int):
             raise ErrorMethod("fit_CV must be used on object from inherited class from module greenml.models")
         else:
+
             grid = GridSearchCV(self.method, self.hparam, cv=nb_fold, verbose=True)
 
             grid.fit(self.X_train, self.y_train)
