@@ -3,7 +3,8 @@ from sklearn.model_selection import GridSearchCV
 import pandas as pd
 from abc import ABC
 
-
+# Will be raised when model affect in parameter don't inherit from
+# our models template
 class ErrorMethod(Exception):
     pass
 
@@ -24,20 +25,18 @@ class Model(ABC):
         
         self.hparam = {}
 
-        self.method = 0
+        self.model = 0
 
         self.y_pred = None
 
     def fit_CV(self, nb_fold=10):
         
-        if isinstance(self.method, int):
+        if isinstance(self.model, int):
             raise ErrorMethod("fit_CV must be used on object from inherited class from module greenml.models")
         else:
 
-            grid = GridSearchCV(self.method, self.hparam, cv=nb_fold, verbose=True)
-
+            grid = GridSearchCV(self.model, self.hparam, cv=nb_fold, verbose=True)
             grid.fit(self.X_train, self.y_train)
-
             self.y_pred = grid.best_estimator_.predict(self.X_test)
 
             return self.y_pred
