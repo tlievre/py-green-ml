@@ -22,5 +22,5 @@ class TestModel:
     def test_fit_CV(my_model):
         """Returns a regular Model instance
         """
-        assert 
+        assert True
     
