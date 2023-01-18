@@ -3,9 +3,10 @@
         {
             "svm_l" : "SVM_Linear"
         },
-    "Bin_Classification" : [
-
-    ],
+    "Bin_Classification" : 
+        {
+            "svm_l" : "SVM_Linear"
+        },
     "Regression" : [
 
     ],
