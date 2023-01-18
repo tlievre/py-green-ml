@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 class Model(ABC):
 
-    def __init__(self, X_train, y_train, X_test):
+    def __init__(self, X_train, y_train, X_test, nb_folds):
 
         if not isinstance(X_train, pd.DataFrame):
             raise ValueError("X_train must be pandas.Dataframe")
@@ -16,11 +16,12 @@ class Model(ABC):
         self.__X_train = X_train
         self.__y_train = y_train
         self.__X_test = X_test
+        self.__nb_folds = nb_folds
 
     @abstractmethod
-    def __fit_cv(self, nb_fold = 10):
+    def __fit_cv(self):
         pass
 
     @abstractmethod
-    def predict(self, nb_fold = 10):
+    def predict(self):
         pass
