@@ -22,6 +22,6 @@ class Model(ABC):
     def _fit_cv(self):
         pass
 
-    @abstractmethod
     def predict(self):
-        pass
+        grid = self._fit_cv()
+        return grid.best_estimator_.predict(self._X_test)

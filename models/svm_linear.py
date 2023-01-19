@@ -17,7 +17,3 @@ class SVM_Linear(Model):
         grid = GridSearchCV(LinearSVC(), self._hparam, cv = self._nb_folds, verbose = True)
         grid.fit(self._X_train, self._y_train)
         return grid
-
-    def predict(self):
-        grid = self._fit_cv()
-        return grid.best_estimator_.predict(self._X_test)
