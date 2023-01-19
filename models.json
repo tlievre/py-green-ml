@@ -2,12 +2,13 @@
     "Multi_Classification" :
         {
             "svm_l" : "SVM_Linear",
-            "log_reg" : "LogisticRegression"
+            "log_reg" : "Logistic_Regression",
+            "multi_nb" : "Naive_Bayes"
         },
     "Bin_Classification" : 
         {
             "svm_l" : "SVM_Linear",
-            "log_reg" : "LogisticRegression"
+            "log_reg" : "Logistic_Regression"
         },
     "Regression" : [
 
