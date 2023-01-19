@@ -4,7 +4,7 @@ from sklearn.model_selection import GridSearchCV
 
 import numpy as np
 
-class LogisticRegression(Model):
+class Logistic_Regression(Model):
 
     def __init__(self, X_train, y_train, X_test, nb_folds,
         params = {
