@@ -1,11 +1,13 @@
 {
     "Multi_Classification" :
         {
-            "svm_l" : "SVM_Linear"
+            "svm_l" : "SVM_Linear",
+            "log_reg" : "LogisticRegression"
         },
     "Bin_Classification" : 
         {
-            "svm_l" : "SVM_Linear"
+            "svm_l" : "SVM_Linear",
+            "log_reg" : "LogisticRegression"
         },
     "Regression" : [
 
