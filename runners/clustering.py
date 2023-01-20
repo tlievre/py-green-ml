@@ -12,7 +12,7 @@ class Clustering(ML_method):
         ML_method (_type_): _description_
     """
 
-    def __rand_index(gold_standards, clusters):
+    def __rand_index(self, gold_standards, clusters):
         """Faster version of the rand index computation function.
 
         Args:
@@ -54,11 +54,11 @@ class Clustering(ML_method):
     def get_metrics(self):
         """_summary_
         """
-
-        y_pred = self.__run()
+        y_pred = self._run()
 
         # compute the confusion matrix of the rand classifier
-        rand_conf = self.__rand_index(self._y_test, y_pred)['confusion_matrix']
+        rand_conf = self.__rand_index(self._y_test, y_pred)
+        rand_conf = rand_conf['confusion_matrix']
 
         # compute recall and precision from the rand classifier confusion matrix
         recall = rand_conf['a'] / (rand_conf['a'] + rand_conf['b'])
