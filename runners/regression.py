@@ -2,7 +2,7 @@ from sklearn import metrics
 from greenml.runners.ml_method import ML_method
 from sklearn.metrics import r2_score, explained_variance_score, mean_squared_error
 
-class Regressor(ML_method):
+class Regression(ML_method):
     """
 
     Args:
@@ -13,7 +13,7 @@ class Regressor(ML_method):
         """_summary_
         """
         
-        y_pred = self.__run()
+        y_pred = self._run()
 
         return {
             'r2_score' : r2_score(self._y_test, y_pred),
