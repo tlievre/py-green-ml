@@ -3,12 +3,15 @@
         {
             "svm_l" : "SVM_Linear",
             "log_reg" : "Logistic_Regression",
-            "multi_nb" : "Naive_Bayes"
+            "multi_nb" : "Naive_Bayes",
+            "d_tree" : "Decision_Tree"
         },
     "Bin_Classification" : 
         {
             "svm_l" : "SVM_Linear",
-            "log_reg" : "Logistic_Regression"
+            "log_reg" : "Logistic_Regression",
+            "multi_nb" : "Naive_Bayes",
+            "d_tree" : "Decision_Tree"
         },
     "Regression" : [
 
