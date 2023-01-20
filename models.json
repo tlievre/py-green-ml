@@ -1,22 +1,24 @@
 {
     "Multi_Classification" :
-        {
-            "svm_l" : "SVM_Linear",
-            "log_reg" : "Logistic_Regression",
-            "multi_nb" : "Naive_Bayes",
-            "d_tree" : "Decision_Tree"
-        },
+    {
+        "svm_l" : "SVM_Linear",
+        "log_reg" : "Logistic_Regression",
+        "multi_nb" : "Naive_Bayes",
+        "d_tree" : "Decision_Tree"
+    },
     "Bin_Classification" : 
-        {
-            "svm_l" : "SVM_Linear",
-            "log_reg" : "Logistic_Regression",
-            "multi_nb" : "Naive_Bayes",
-            "d_tree" : "Decision_Tree"
-        },
-    "Regression" : [
-
-    ],
-    "Clustering" : [
-
-    ]
+    {
+        "svm_l" : "SVM_Linear",
+        "log_reg" : "Logistic_Regression",
+        "multi_nb" : "Naive_Bayes",
+        "d_tree" : "Decision_Tree"
+    },
+    "Regression" :
+    {
+        "lin_reg" : "Linear_Regression"
+    },
+    "Clustering" : 
+    {
+        "k_means" : "K_Means"
+    }
 }
