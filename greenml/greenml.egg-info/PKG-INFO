@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: greenml
+Version: 0.0.1
+Summary: Computes Machine Learning algorithms' power consumption
+Home-page: https://gitlab.com/m2-ssd/green-ml/pygreen_ml.git
+Author: Renan Manceaux, Quentin Faidide, Lorys Debbah, Thomas Lievre
+License: LICENSE

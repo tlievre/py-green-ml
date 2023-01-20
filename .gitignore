@@ -4,3 +4,10 @@ models/__pycache__/*
 runners/__pycache__/*
 greenml.egg-info/*
 preprocessing/*
+greenml/__init__.py
+greenml/__pycache__/
+greenml/greenml.egg-info/
+greenml/models/__pycache__/
+greenml/preprocessing/__pycache__/
+greenml/runners/__pycache__/
+dist/*

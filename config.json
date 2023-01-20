@@ -1,0 +1,7 @@
+{
+    "name": ["abalone"],
+    "path": ["./datasets/abalone/"],
+    "task": ["Multi_Classification"],
+    "y": ["Rings"],
+    "mod_token": ["svm_l"]
+}
