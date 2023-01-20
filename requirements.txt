@@ -3,4 +3,6 @@ pandas
 seaborn
 tqdm
 scikit-learn
+sphinx
+sphinx-rtd-theme
 torch #no CUDA
