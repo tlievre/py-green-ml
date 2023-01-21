@@ -4,15 +4,34 @@ from sklearn import metrics
 from greenml.runners.ml_method import ML_method
 
 class Multi_Classifier(ML_method):
-    """
+    """Multinomial classification, could use the following implemented model :
+        - Support vector machine
+        - Multinomial Naives Bayes
+        - Logistic regression
+        - K-nearest neighbors
+        - Decision tree classifier
+        - Random forest classifier
 
     Args:
-        ML_method (_type_): _description_
+        ML_method (class): Inherited abstract class.
     """
-
+    
     def get_metrics(self):
-        """_summary_
+        """compute multinomial classification metrics. 
+        
+        Returns:
+            dict : In multiclassification, it appears two method for averaging
+            data (from sklearn), "micro" calculate metrics globally by
+            counting the total true positives, false negatives and false
+            positives. "macro" Calculate metrics for each label, and find their
+            unweighted mean. get_metrics compute the following metrics below :
+                - accuracy
+                - precision micro/macro
+                - recall micro/macro
+                - f1 score micro/macro
         """
+        #/!\ Should we add ROC and AUC ?
+
         y_pred = self._run()
 
         acc = metrics.accuracy_score(self._y_test, y_pred)

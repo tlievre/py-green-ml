@@ -3,14 +3,21 @@ from greenml.runners.ml_method import ML_method
 from sklearn.metrics import r2_score, explained_variance_score, mean_squared_error
 
 class Regression(ML_method):
-    """
+    """Clustering class, could use the following implemented model :
+        - Linear Regression
 
     Args:
-        ML_method (_type_): _description_
+        ML_method (class): Ineherited abstract class
     """
 
     def get_metrics(self):
-        """_summary_
+        """Compute some regression metrics.
+
+        Returns:
+            dict: It contains the sklearn metrics below :
+                - R²
+                - explained variance (similar to R²)
+                - Minimum square error
         """
         
         y_pred = self._run()

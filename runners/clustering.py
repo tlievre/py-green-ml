@@ -6,14 +6,16 @@ from greenml.runners.ml_method import ML_method
 from sklearn.metrics import fowlkes_mallows_score
 
 class Clustering(ML_method):
-    """
-
+    """Clustering class, could use the following implemented model :
+        - k_means
+    
     Args:
-        ML_method (_type_): _description_
+        ML_method (class): Ineherited abstract class.
     """
 
     def __rand_index(self, gold_standards, clusters):
-        """Faster version of the rand index computation function.
+        """Rand index function. It allows to retrieve the confusion matrix of
+        the rand index binary classifier.
 
         Args:
             gold_standards (array): Gold standards labels in our case category column. Defaults to df.category[:500].
@@ -52,7 +54,17 @@ class Clustering(ML_method):
     
 
     def get_metrics(self):
-        """_summary_
+        """Compute some clustering metrics.
+
+        Returns:
+            dict: It contains the following metrics (implement by sklearn) :
+                - adjusted rand index
+                - rand index
+                - recall
+                - precision
+                - F1-score
+                - homogeneity score
+                - fowlkes mallows index
         """
         y_pred = self._run()
 

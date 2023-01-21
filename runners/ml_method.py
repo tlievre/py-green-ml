@@ -8,16 +8,24 @@ from abc import ABC, abstractmethod
 
 
 class ML_method(ABC) :
-    """_summary_
+    """This abstract class implement the basic structure of our machine
+    learning statistic methods (classification, regression, clustering ...).
     """
     
     def __init__(self,config) :
-        """_summary_
-
+        """
         Args:
-            config (_type_): _description_
+            config (dict): contain all parameters of a ml_method object.
+            the dictionnary should be organized like below :
+                - name : str
+                - path : str
+                - task : str
+                - y : array
+                - token : str
+                - folds : int
         """
         # config load
+        # /!\ types should be test ?
         self._data_name = config["name"]
         self._data_path = config["path"]
         self._task = config["task"]
@@ -37,10 +45,10 @@ class ML_method(ABC) :
 
     
     def _run(self) :
-        """_summary_
+        """This protected method aim to construct the suitable model and method. 
 
         Args:
-            nb_folds (int, optional): _description_. Defaults to 10.
+            nb_folds (int, optional): Set the folds numbers in the cross validation. Defaults to 10.
         """
         
         # fetch suitable task and token
@@ -57,4 +65,6 @@ class ML_method(ABC) :
 
     @abstractmethod
     def get_metrics(self):
+        """compute the metrics following the suitable inherited method class
+        """
         pass

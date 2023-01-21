@@ -2,14 +2,27 @@ from sklearn import metrics
 from greenml.runners.ml_method import ML_method
 
 class Binar_Classifier(ML_method):
-    """
-
+    """Binary classification, could use the following implemented model :
+        - Support vector machine
+        - Multinomial Naives Bayes
+        - Logistic regression
+        - K-nearest neighbors
+        - Decision tree classifier
+        - Random forest classifier
+    
     Args:
-        ML_method (_type_): _description_
+        ML_method (class): Ineherited abstract class.
     """
 
     def get_metrics(self):
-        """_summary_
+        """compute the binary classification metrics.
+
+        Returns :
+            dict : It gives the metrics below :
+                - accuracy
+                - precision
+                - recall
+                - F1-score
         """
         y_pred = self._run()
 
