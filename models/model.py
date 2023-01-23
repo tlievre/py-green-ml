@@ -3,9 +3,23 @@ from abc import ABC, abstractmethod
 
 
 class Model(ABC):
+    """Machine learning model abstract class. It supplies the basic structure
+    of our machine learning model.
+    """
 
     def __init__(self, X_train, y_train, X_test, nb_folds):
+        """
+        Args:
+            X_train (pd.DataFrame): Train set predictors.
+            y_train (pd.DataFrame): Train set responses.
+            X_test (pd.DataFrame): Test set predictors.
+            nb_folds (int): Folds numbers used in cross validation.
 
+        Raises:
+            ValueError: X_train type error
+            ValueError: y_train type error
+            ValueError: X_test type error
+        """
         if not isinstance(X_train, pd.DataFrame):
             raise ValueError("X_train must be pandas.Dataframe")
         if not isinstance(y_train, pd.Series):
@@ -23,5 +37,10 @@ class Model(ABC):
         pass
 
     def predict(self):
+        """Compute the predicted response vector given sklearn trained model.
+
+        Returns:
+            array: 1-D predicted response vector.
+        """
         grid = self._fit_cv()
         return grid.best_estimator_.predict(self._X_test)
