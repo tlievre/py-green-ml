@@ -12,8 +12,7 @@ class Multi_Classifier(ML_method):
         - Decision tree classifier
         - Random forest classifier
 
-    Args:
-        ML_method (class): Inherited abstract class.
+    Inherit from ML_method abstract class.
     """
     
     def get_metrics(self):

@@ -6,8 +6,7 @@ class Regression(ML_method):
     """Clustering class, could use the following implemented model :
         - Linear Regression
 
-    Args:
-        ML_method (class): Ineherited abstract class
+    Inherit from ML_method abstract class.
     """
 
     def get_metrics(self):

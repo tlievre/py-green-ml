@@ -9,8 +9,7 @@ class Clustering(ML_method):
     """Clustering class, could use the following implemented model :
         - k_means
     
-    Args:
-        ML_method (class): Ineherited abstract class.
+    Inherit from ML_method abstract class.
     """
 
     def __rand_index(self, gold_standards, clusters):

@@ -44,7 +44,7 @@ class ML_method(ABC) :
         self._y_test = data_test[self._data_y_var]
 
     
-    def _run(self) :
+    def _run(self, path = "greenml/models.json") :
         """This protected method aim to construct the suitable model and method. 
 
         Args:
@@ -52,7 +52,8 @@ class ML_method(ABC) :
         """
         
         # fetch suitable task and token
-        token_list = json.load(open("greenml/models.json")) # /!\ To fix LORYS !!
+        with open(path) as f:
+            token_list = json.load(f) # /!\ To fix LORYS !!
         tok = token_list[self._task][self._token]
         tok2 = tok.lower()
 
