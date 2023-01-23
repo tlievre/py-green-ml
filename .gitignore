@@ -1,6 +1,6 @@
 __pycache__/*
 .vscode
 models/__pycache__/*
-runners/__pycache__/*
+runner/__pycache__/*
 tests/__pycache__/*
 GreenML.egg-info/*
