@@ -1,9 +1,11 @@
 from scipy.special import comb
 import pandas as pd
 
+from sklearn.metrics import fowlkes_mallows_score
+from sklearn.exceptions import NotFittedError
 from sklearn.metrics.cluster import adjusted_rand_score, rand_score, homogeneity_score
 from greenml.runners.ml_method import ML_method
-from sklearn.metrics import fowlkes_mallows_score
+
 
 class Clustering(ML_method):
     """Clustering class, could use the following implemented model :
@@ -65,7 +67,11 @@ class Clustering(ML_method):
                 - homogeneity score
                 - fowlkes mallows index
         """
-        y_pred = self._run()
+        try: 
+            y_pred = self._model.predict()
+        except NotFittedError as e: # catch non fitted model error
+            print(repr(e))
+            raise
 
         # compute the confusion matrix of the rand classifier
         rand_conf = self.__rand_index(self._y_test, y_pred)

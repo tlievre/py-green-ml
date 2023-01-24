@@ -1,4 +1,5 @@
 from sklearn import metrics
+from sklearn.exceptions import NotFittedError
 from greenml.runners.ml_method import ML_method
 from sklearn.metrics import r2_score, explained_variance_score, mean_squared_error
 
@@ -10,7 +11,7 @@ class Regression(ML_method):
     """
 
     def get_metrics(self):
-        """Compute some regression metrics.
+        """Compute some regression metrics. Should be trained before
 
         Returns:
             dict: It contains the sklearn metrics below :
@@ -19,7 +20,11 @@ class Regression(ML_method):
                 - Minimum square error
         """
         
-        y_pred = self._run()
+        try: 
+            y_pred = self._model.predict()
+        except NotFittedError as e: # catch non fitted model error
+            print(repr(e))
+            raise
 
         return {
             'r2_score' : r2_score(self._y_test, y_pred),

@@ -1,4 +1,5 @@
 from sklearn import metrics
+from sklearn.exceptions import NotFittedError
 from greenml.runners.ml_method import ML_method
 
 class Binar_Classifier(ML_method):
@@ -23,7 +24,11 @@ class Binar_Classifier(ML_method):
                 - recall
                 - F1-score
         """
-        y_pred = self._run()
+        try: 
+            y_pred = self._model.predict()
+        except NotFittedError as e: # catch non fitted model error
+            print(repr(e))
+            raise
 
         acc = metrics.accuracy_score(self._y_test, y_pred)
         prec = metrics.precision_score(self._y_test, y_pred)

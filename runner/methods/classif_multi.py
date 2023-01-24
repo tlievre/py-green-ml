@@ -1,6 +1,7 @@
 # coding: utf-8
 
 from sklearn import metrics
+from sklearn.exceptions import NotFittedError
 from greenml.runners.ml_method import ML_method
 
 class Multi_Classifier(ML_method):
@@ -31,7 +32,11 @@ class Multi_Classifier(ML_method):
         """
         #/!\ Should we add ROC and AUC ?
 
-        y_pred = self._run()
+        try: 
+            y_pred = self._model.predict()
+        except NotFittedError as e: # catch non fitted model error
+            print(repr(e))
+            raise
 
         acc = metrics.accuracy_score(self._y_test, y_pred)
         prec_micro = metrics.precision_score(
