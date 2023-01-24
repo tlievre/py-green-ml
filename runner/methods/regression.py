@@ -1,6 +1,6 @@
 from sklearn import metrics
 from sklearn.exceptions import NotFittedError
-from greenml.runners.ml_method import ML_method
+from greenml.runner.methods.ml_method import ML_method
 from sklearn.metrics import r2_score, explained_variance_score, mean_squared_error
 
 class Regression(ML_method):

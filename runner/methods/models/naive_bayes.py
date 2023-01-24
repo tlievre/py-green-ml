@@ -1,4 +1,4 @@
-from greenml.models.model import Model
+from greenml.runner.methods.models.model import Model
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import GridSearchCV
 
@@ -42,8 +42,8 @@ class Naive_Bayes(Model):
         Returns:
             array: 1-D predicted response vector.
         """
-        self.__grid.predict(self._X_test)
+        return self.__grid.predict(self._X_test)
 
     @property
-    def parameters(self):
+    def parameters(self) -> dict:
         return self.__parameters

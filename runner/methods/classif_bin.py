@@ -1,6 +1,6 @@
 from sklearn import metrics
 from sklearn.exceptions import NotFittedError
-from greenml.runners.ml_method import ML_method
+from greenml.runner.methods.ml_method import ML_method
 
 class Binar_Classifier(ML_method):
     """Binary classification, could use the following implemented model :

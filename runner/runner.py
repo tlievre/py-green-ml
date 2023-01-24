@@ -4,9 +4,10 @@ import json
 import pandas as pd
 import importlib
 
-from exception import Exception
+# from exception import Exception
 
-from measure import PyRaplMeasurement, CodeCarbonMeasurement
+#/!\ add when measure methods will be implement
+# from measure import PyRaplMeasurement, CodeCarbonMeasurement
 
 class Runner() :
     """This abstract class implement the basic structure of our machine
@@ -66,14 +67,14 @@ class Runner() :
         with open("greenml/models.json") as f:
             token_list = json.load(f)
         tok = token_list[task][token]
-        tok2 = tok.lower()
+        
 
         # get the suitable method class
         try :
-            method_path = "greenml.runner.methods." + task
+            method_path = "greenml.runner.methods." + task.lower()
             method = importlib.import_module(method_path)
-            constr_method = getattr(method, token)
-            self._method = constr_method(data_train, data_test, tok2, config["folds"])
+            constr_method = getattr(method, task)
+            self._method = constr_method(data_train, data_test, config["y"], tok, config["folds"])
         except (ImportError, AttributeError):
             raise ValueError("Unknown " + method_path)
 
@@ -87,4 +88,4 @@ class Runner() :
         # train the model
         self._method.fit()
         # get the metrics
-        self._method.get_metrics()
+        return self._method.get_metrics()

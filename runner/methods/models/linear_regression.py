@@ -1,4 +1,4 @@
-from greenml.models.model import Model
+from greenml.runner.methods.models.model import Model
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import GridSearchCV
 
@@ -45,7 +45,7 @@ class Linear_Regression(Model):
         Returns:
             array: 1-D predicted response vector.
         """
-        self.__grid.predict(self._X_test)
+        return self.__grid.predict(self._X_test)
 
     @property
     def parameters(self) -> dict:

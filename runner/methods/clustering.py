@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.metrics import fowlkes_mallows_score
 from sklearn.exceptions import NotFittedError
 from sklearn.metrics.cluster import adjusted_rand_score, rand_score, homogeneity_score
-from greenml.runners.ml_method import ML_method
+from greenml.runner.methods.ml_method import ML_method
 
 
 class Clustering(ML_method):
