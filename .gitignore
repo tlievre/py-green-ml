@@ -4,3 +4,5 @@ models/__pycache__/*
 runner/__pycache__/*
 tests/__pycache__/*
 GreenML.egg-info/*
+runner/methods/__pycache__/*
+runner/methods/models/__pycache__/*
