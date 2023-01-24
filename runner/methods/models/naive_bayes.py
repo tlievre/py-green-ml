@@ -22,14 +22,28 @@ class Naive_Bayes(Model):
                 {'alpha': [0.00001, 0.0001, 0.001, 0.1, 1, 10, 100, 1000]}.
         """
         super().__init__(X_train, y_train, X_test, nb_folds)
-        self._hparam = params
+        self._parameters = params
+        self.__grid = GridSearchCV(MultinomialNB(), params,
+            cv = self._nb_folds, verbose = True)
+    
 
-    def _fit_cv(self):
+    def fit_cv(self):
         """Compute the predicted response vector given by the trained model MultinomialNB.
 
         Returns:
             array: 1-D predicted repsonse vector.
         """
-        grid = GridSearchCV(MultinomialNB(), self._hparam, cv = self._nb_folds, verbose = True)
-        grid.fit(self._X_train, self._y_train)
-        return grid
+        
+        self.__grid.fit(self._X_train, self._y_train)
+
+    def predict(self):
+        """Compute the predicted response vector given sklearn trained model MultinomialNB.
+
+        Returns:
+            array: 1-D predicted response vector.
+        """
+        self.__grid.predict(self._X_test)
+
+    @property
+    def parameters(self):
+        return self.__parameters

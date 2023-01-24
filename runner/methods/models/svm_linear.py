@@ -30,16 +30,28 @@ class SVM_Linear(Model):
         """
         super().__init__(X_train, y_train, X_test, nb_folds)
 
-        self._hparam = params
+        self.__parameters = params
+        self.__grid = GridSearchCV(LinearSVC(), params,
+            cv = self._nb_folds, verbose = True)
 
-    def _fit_cv(self):
+    def fit_cv(self):
         """Compute the predicted response vector given by the trained model
         LinearSVC().
 
         Returns:
             array: 1-D predicted repsonse vector.
         """
-        grid = GridSearchCV(LinearSVC(), self._hparam, cv = self._nb_folds,
-            verbose = True)
-        grid.fit(self._X_train, self._y_train)
-        return grid
+        self.__grid.fit(self._X_train, self._y_train)
+    
+    def predict(self):
+        """Compute the predicted response vector given sklearn trained model
+        LinearSVC().
+
+        Returns:
+            array: 1-D predicted response vector.
+        """
+        self.__grid.predict(self._X_test)
+
+    @property
+    def parameters(self) -> dict:
+        return self.__parameters

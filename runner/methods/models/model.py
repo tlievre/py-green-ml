@@ -1,5 +1,5 @@
 import pandas as pd
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, abstractproperty
 
 
 class Model(ABC):
@@ -33,14 +33,23 @@ class Model(ABC):
         self._nb_folds = nb_folds
 
     @abstractmethod
-    def _fit_cv(self):
+    def fit_cv(self):
+        """Compute the predicted response vector given by the trained model.
+
+        Returns:
+            array: 1-D predicted repsonse vector.
+        """
         pass
 
+    @abstractmethod
     def predict(self):
         """Compute the predicted response vector given sklearn trained model.
 
         Returns:
             array: 1-D predicted response vector.
         """
-        grid = self._fit_cv()
-        return grid.best_estimator_.predict(self._X_test)
+        pass
+
+    @abstractproperty
+    def parameters() -> dict:
+        pass
