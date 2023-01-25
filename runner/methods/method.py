@@ -47,8 +47,7 @@ class Method(ABC) :
         Args:
             nb_folds (int, optional): Set the folds numbers in the cross validation. Defaults to 10.
         """
-        
-        return self._model.fit_cv()
+        self._model.fit_cv()
 
     @abstractmethod
     def get_metrics(self):
