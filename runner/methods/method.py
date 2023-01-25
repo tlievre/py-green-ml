@@ -3,7 +3,7 @@ import importlib
 from abc import ABC, abstractmethod
 
 
-class ML_method(ABC) :
+class Method(ABC) :
     """This abstract class implement the basic structure of our machine
     learning statistic methods (classification, regression, clustering ...).
     """

@@ -2,9 +2,9 @@
 
 from sklearn import metrics
 from sklearn.exceptions import NotFittedError
-from greenml.runner.methods.ml_method import ML_method
+from greenml.runner.methods.method import Method
 
-class Multi_Classifier(ML_method):
+class Multi_Classifier(Method):
     """Multinomial classification, could use the following implemented model :
         - Support vector machine
         - Multinomial Naives Bayes
@@ -13,7 +13,7 @@ class Multi_Classifier(ML_method):
         - Decision tree classifier
         - Random forest classifier
 
-    Inherit from ML_method abstract class.
+    Inherit from Method abstract class.
     """
     
     def get_metrics(self):

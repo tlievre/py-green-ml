@@ -35,9 +35,6 @@ class Model(ABC):
     @abstractmethod
     def fit_cv(self):
         """Compute the predicted response vector given by the trained model.
-
-        Returns:
-            array: 1-D predicted repsonse vector.
         """
         pass
 

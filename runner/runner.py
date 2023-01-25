@@ -17,7 +17,7 @@ class Runner() :
     def __init__(self, config) :
         """
         Args:
-            config (dict): contain all parameters of a ml_method object.
+            config (dict): contain all parameters of a Method object.
             the dictionnary should be organized like below :
                 - name : str
                 - path : str
