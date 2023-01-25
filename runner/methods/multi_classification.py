@@ -4,7 +4,7 @@ from sklearn import metrics
 from sklearn.exceptions import NotFittedError
 from greenml.runner.methods.method import Method
 
-class Multi_Classifier(Method):
+class Multi_Classification(Method):
     """Multinomial classification, could use the following implemented model :
         - Support vector machine
         - Multinomial Naives Bayes
