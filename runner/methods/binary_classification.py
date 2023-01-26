@@ -2,7 +2,7 @@ from sklearn import metrics
 from sklearn.exceptions import NotFittedError
 from greenml.runner.methods.method import Method
 
-class Binary_classification(Method):
+class Binary_Classification(Method):
     """Binary classification, could use the following implemented model :
         - Support vector machine
         - Multinomial Naives Bayes
