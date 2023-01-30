@@ -6,7 +6,7 @@
         "multi_nb" : "Naive_Bayes",
         "d_tree" : "Decision_Tree"
     },
-    "Bin_Classification" : 
+    "Binary_Classification" : 
     {
         "svm_l" : "SVM_Linear",
         "log_reg" : "Logistic_Regression",
