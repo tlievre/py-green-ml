@@ -1,7 +1,3 @@
-# coding: utf-8
-
-from sklearn import metrics
-from sklearn.exceptions import NotFittedError
 from greenml.runner.methods.method import Method
 
 class Multi_Classification(Method):
@@ -15,12 +11,17 @@ class Multi_Classification(Method):
 
     Inherit from Method abstract class.
     """
-    
-    def get_metrics(self):
-        """compute multinomial classification metrics. 
-        
+
+
+    def __compute_metrics(self, key, y_pred):
+        """Compute metrics of a multninomial classification fitted model.
+
+        Args:
+            key (str): Key of the returned dictionnary.
+            y_pred (array): Predicted vector 1-D of a fitted model. 
+
         Returns:
-            dict : In multiclassification, it appears two method for averaging
+            dict: In multiclassification, it appears two method for averaging
             data (from sklearn), "micro" calculate metrics globally by
             counting the total true positives, false negatives and false
             positives. "macro" Calculate metrics for each label, and find their
@@ -30,32 +31,20 @@ class Multi_Classification(Method):
                 - recall micro/macro
                 - f1 score micro/macro
         """
-        #/!\ Should we add ROC and AUC ?
-
-        try: 
-            y_pred = self._model.predict()
-        except NotFittedError as e: # catch non fitted model error
-            print(repr(e))
-            raise
-
-        acc = metrics.accuracy_score(self._y_test, y_pred)
-        prec_micro = metrics.precision_score(
-            self._y_test, y_pred, average="micro")
-        prec_macro = metrics.precision_score(
-            self._y_test, y_pred, average="macro")
-        rec_micro = metrics.recall_score(
-            self._y_test, y_pred, average="micro")
-        rec_macro = metrics.recall_score(
-            self._y_test, y_pred, average="macro")
-        f1_micro = metrics.f1_score(self._y_test, y_pred, average="micro")
-        f1_macro = metrics.f1_score(self._y_test, y_pred, average="macro")
-
-        return {
-            "accuracy": acc,
-            "precision_micro": prec_micro,
-            "precision_macro": prec_macro,
-            "recall_micro": rec_micro,
-            "recall_macro": rec_macro,
-            "f1_micro": f1_micro,
-            "f1_macro": f1_macro
+        metrics = {
+            "accuracy": metrics.accuracy_score(self._y_test, y_pred),
+            "precision_micro": metrics.precision_score(self._y_test, y_pred,
+                average="micro"),
+            "precision_macro": metrics.precision_score(self._y_test, y_pred,
+                average="macro"),
+            "recall_micro": metrics.recall_score(self._y_test, y_pred,
+                average="micro"),
+            "recall_macro": metrics.recall_score(self._y_test, y_pred,
+                average="macro"),
+            "f1_micro": metrics.f1_score(self._y_test,
+                y_pred, average="micro"),
+            "f1_macro": metrics.f1_score(self._y_test,
+                y_pred, average="macro")
         }
+
+        return {key : metrics}

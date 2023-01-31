@@ -2,7 +2,6 @@ from scipy.special import comb
 import pandas as pd
 
 from sklearn.metrics import fowlkes_mallows_score
-from sklearn.exceptions import NotFittedError
 from sklearn.metrics.cluster import adjusted_rand_score, rand_score, homogeneity_score
 from greenml.runner.methods.method import Method
 
@@ -53,9 +52,12 @@ class Clustering(Method):
             'rand_distance' : 1 - ri
         }
     
+    def __compute_metrics(self, key, y_pred):
+        """Compute metrics of a clustering fitted model.
 
-    def get_metrics(self):
-        """Compute some clustering metrics.
+        Args:
+            key (str): Key of the returned dictionnary.
+            y_pred (array): Predicted vector 1-D of a fitted model.
 
         Returns:
             dict: It contains the following metrics (implement by sklearn) :
@@ -67,12 +69,6 @@ class Clustering(Method):
                 - homogeneity score
                 - fowlkes mallows index
         """
-        try: 
-            y_pred = self._model.predict()
-        except NotFittedError as e: # catch non fitted model error
-            print(repr(e))
-            raise
-
         # compute the confusion matrix of the rand classifier
         rand_conf = self.__rand_index(self._y_test, y_pred)
         rand_conf = rand_conf['confusion_matrix']
@@ -81,7 +77,7 @@ class Clustering(Method):
         recall = rand_conf['a'] / (rand_conf['a'] + rand_conf['b'])
         precision = rand_conf['a'] / (rand_conf['a'] + rand_conf['c'])
 
-        return {
+        metrics = {
             'adj_rand_index' : adjusted_rand_score(self._y_test, y_pred),
             'rand_index' : rand_score(self._y_test, y_pred),
             'recall' : recall,
@@ -90,3 +86,4 @@ class Clustering(Method):
             'h_score' : homogeneity_score(self._y_test, y_pred),
             'fowlkes_mallows_index' : fowlkes_mallows_score(self._y_test, y_pred)
         }
+        return {key : metrics}

@@ -25,6 +25,7 @@ class Runner() :
                 - y : array
                 - token : list
                 - folds : int
+                - measure : str
             model_path (str): path of the machine learning model.
         """
         # config loading
@@ -32,18 +33,8 @@ class Runner() :
         self._data_path = config["path"]
         self._data_y_var = config["y"]
         self._nb_folds = config["folds"]
-
-
-        # get the measure method
-        if (measure := config["measure"]) == None:
-            self._measure = None 
-        elif measure == "pyRapl":
-            self._measure = PyRaplMeasurement()
-        elif measure == "codecarbon":
-            self._measure = CodeCarbonMeasurement()
-        else:
-            raise Exception("measure value does't refer an existing \
-                measurement method")
+        self._consumption_method = config["measure"]
+        
         
         # data load /!\ à modifier dans REDIS
         try:
@@ -84,7 +75,8 @@ class Runner() :
             method_path = "greenml.runner.methods." + task.lower()
             method = importlib.import_module(method_path)
             constr_method = getattr(method, task)
-            self._method = constr_method(data_train, data_test, config["y"], models_name, config["folds"])
+            self._method = constr_method(data_train, data_test, config["y"],
+                models_name, config["folds"], config["measure"])
         except (ImportError, AttributeError):
             raise ValueError("Unknown " + method_path)
 
