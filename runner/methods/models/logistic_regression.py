@@ -42,9 +42,17 @@ class Logistic_Regression(Model):
         logistic regression.
 
         Returns:
-            array: 1-D predicted repsonse vector
+            float: measure or None.
         """
-        self.__grid.fit(self._X_train, self._y_train)
+        if self.__measurement is None:
+            return_value = None
+        else :
+            # training measure
+            self.__measurement.begin()
+            self.__grid.fit(self._X_train, self._y_train)
+            self.__measurement.end()
+            return_value = self.__measurement.convert()
+        return return_value
 
     def predict(self):
         """Compute the predicted response vector given sklearn trained model

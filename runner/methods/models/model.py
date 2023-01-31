@@ -1,13 +1,16 @@
 import pandas as pd
 from abc import ABC, abstractmethod, abstractproperty
 
+from measure.pyrapl_measurement import PyRAPLMeasurement
+# from measure.code_carbon_measurement import CodeCarbonMeasurement
+
 
 class Model(ABC):
     """Machine learning model abstract class. It supplies the basic structure
     of our machine learning model.
     """
 
-    def __init__(self, X_train, y_train, X_test, nb_folds):
+    def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method):
         """
         Args:
             X_train (pd.DataFrame): Train set predictors.
@@ -32,6 +35,18 @@ class Model(ABC):
         self._X_test = X_test
         self._nb_folds = nb_folds
 
+        # get the measure method
+        if consumption_method == None:
+            self.__measurement = None 
+        elif consumption_method == "pyRapl":
+            self.__measurement = PyRAPLMeasurement()
+        elif consumption_method == "codecarbon":
+            # self.__measurement = CodeCarbonMeasurement()
+            pass
+        else:
+            raise Exception("measure value does't refer an existing \
+                measurement method")
+
     @abstractmethod
     def fit_cv(self):
         """Compute the predicted response vector given by the trained model.
@@ -48,5 +63,9 @@ class Model(ABC):
         pass
 
     @abstractproperty
-    def parameters() -> dict:
+    def parameters(self) -> dict:
         pass
+
+    @property
+    def model_name(self) -> str:
+        return type(self).__name__
