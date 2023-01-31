@@ -88,6 +88,9 @@ class Runner() :
             array : 1-D vector of the predicted value
         """
         # train the model
-        self._method.fit()
+        measurement = self._method.fit()
         # get the metrics
-        return self._method.get_metrics()
+        return {
+            'measurement' : measurement,
+            'metrics' : self._method.get_metrics()
+        }
