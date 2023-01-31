@@ -4,7 +4,7 @@ import json
 import pandas as pd
 import importlib
 
-from exception import EmptyModelsNameList
+from greenml.runner.exception import EmptyModelsNameList
 
 #/!\ add when measure methods will be implement
 # from measure import PyRaplMeasurement, CodeCarbonMeasurement
@@ -41,16 +41,19 @@ class Runner() :
             data_train = pd.read_csv(str(self._data_path) + str(self._data_name) \
                 + "_train.csv")
             data_test = pd.read_csv(str(self._data_path) + str(self._data_name) \
-            + "_test.csv")
+                + "_test.csv")
         except FileNotFoundError:
             print("File not found.")
+            raise
         except pd.errors.EmptyDataError:
             print("No data")
+            raise
         except pd.errors.ParserError:
             print("Parse error")
+            raise
         except Exception:
             print("Some other exception")
-
+            raise
         # fetch suitable task and token
         # task and token to test
         task = config["task"]
@@ -61,7 +64,7 @@ class Runner() :
             token_list = json.load(f)
 
         try:
-            models_name = [model for _,model in token_list[task].items() if model in mod_tokens]
+            models_name = [model for mod_token,model in token_list[task].items() if mod_token in mod_tokens]
         except KeyError as err:
             print("{} isn't refer in the dictionnary".format(err))
             raise

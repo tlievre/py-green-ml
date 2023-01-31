@@ -8,7 +8,7 @@ class Regression(Method):
     Inherit from Method abstract class.
     """
 
-    def __compute_metrics(self, key, y_pred):
+    def _compute_metrics(self, y_pred):
         """Compute metrics of a regression fitted model.
 
         Args:
@@ -28,4 +28,4 @@ class Regression(Method):
             'mse' : mean_squared_error(self._y_test, y_pred)
         }
 
-        return {key : metrics}
+        return metrics

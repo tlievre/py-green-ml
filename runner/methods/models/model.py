@@ -1,8 +1,9 @@
 import pandas as pd
 from abc import ABC, abstractmethod, abstractproperty
 
-from measure.pyrapl_measurement import PyRAPLMeasurement
+from greenml.runner.methods.models.measure.pyrapl_measurement import PyRAPLMeasurement
 # from measure.code_carbon_measurement import CodeCarbonMeasurement
+
 
 
 class Model(ABC):
@@ -37,11 +38,11 @@ class Model(ABC):
 
         # get the measure method
         if consumption_method == None:
-            self.__measurement = None 
-        elif consumption_method == "pyRapl":
-            self.__measurement = PyRAPLMeasurement()
+            self._measurement = None 
+        elif consumption_method == "pyRAPL":
+            self._measurement = PyRAPLMeasurement()
         elif consumption_method == "codecarbon":
-            # self.__measurement = CodeCarbonMeasurement()
+            # self._measurement = CodeCarbonMeasurement()
             pass
         else:
             raise Exception("measure value does't refer an existing \

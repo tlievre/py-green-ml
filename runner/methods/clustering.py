@@ -52,7 +52,7 @@ class Clustering(Method):
             'rand_distance' : 1 - ri
         }
     
-    def __compute_metrics(self, key, y_pred):
+    def _compute_metrics(self, y_pred):
         """Compute metrics of a clustering fitted model.
 
         Args:
@@ -86,4 +86,4 @@ class Clustering(Method):
             'h_score' : homogeneity_score(self._y_test, y_pred),
             'fowlkes_mallows_index' : fowlkes_mallows_score(self._y_test, y_pred)
         }
-        return {key : metrics}
+        return metrics

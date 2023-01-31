@@ -1,4 +1,5 @@
 from greenml.runner.methods.method import Method
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 class Binary_Classification(Method):
     """Binary classification, could use the following implemented model :
@@ -12,7 +13,7 @@ class Binary_Classification(Method):
     Inherit from Method abstract class.
     """
 
-    def __compute_metrics(self, key, y_pred):
+    def _compute_metrics(self, y_pred):
         """compute metrics of a binary classification fitted model.
 
         Args:
@@ -27,9 +28,9 @@ class Binary_Classification(Method):
                 - F1-score
         """
         metrics = {
-            "accuracy": metrics.accuracy_score(self._y_test, y_pred),
-            "precision": metrics.precision_score(self._y_test, y_pred),
-            "recall": metrics.recall_score(self._y_test, y_pred),
-            "f1": metrics.f1_score(self._y_test, y_pred)
+            "accuracy": accuracy_score(self._y_test, y_pred),
+            "precision": precision_score(self._y_test, y_pred),
+            "recall": recall_score(self._y_test, y_pred),
+            "f1": f1_score(self._y_test, y_pred)
         }
-        return {key : metrics}
+        return metrics

@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 from sklearn.exceptions import NotFittedError
 
 
-class Method(ABC) :
+class Method(ABC):
     """This abstract class implement the basic structure of our machine
     learning statistic methods (classification, regression, clustering ...).
     """
@@ -32,9 +32,9 @@ class Method(ABC) :
         self._consumption_method = consumption_method
         
         
+        models = [] # initialize an empty list
         for model_name in models_name:
             module_name = model_name.lower()
-            models = []
             # get the suitable method class
             try :
                 module_path = "greenml.runner.methods.models." + module_name
@@ -48,17 +48,17 @@ class Method(ABC) :
 
 
     @abstractmethod
-    def __compute_metrics(self, key, y_pred):
+    def _compute_metrics(self, y_pred):
         pass
 
 
-    def fit(self) :
+    def fit(self):
         """This protected method aim to construct the suitable model and method. 
 
         Args:
             nb_folds (int, optional): Set the folds numbers in the cross validation. Defaults to 10.
         """
-        return {model.model_name : model.fit_cv() for model in self.__models}
+        return {model.model_name : model.fit_cv() for model in self._models}
 
 
     def get_metrics(self):
@@ -69,7 +69,7 @@ class Method(ABC) :
         """
         try: 
             models_metrics = {
-                self.__compute_metrics(model.model_name, model.predict())
+                model.model_name : self._compute_metrics(model.predict())
                     for model in self._models
             }
         except NotFittedError as e: # catch non fitted model error

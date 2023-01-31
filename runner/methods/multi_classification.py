@@ -1,4 +1,6 @@
 from greenml.runner.methods.method import Method
+from sklearn import metrics
+
 
 class Multi_Classification(Method):
     """Multinomial classification, could use the following implemented model :
@@ -13,7 +15,7 @@ class Multi_Classification(Method):
     """
 
 
-    def __compute_metrics(self, key, y_pred):
+    def _compute_metrics(self, y_pred):
         """Compute metrics of a multninomial classification fitted model.
 
         Args:
@@ -31,7 +33,7 @@ class Multi_Classification(Method):
                 - recall micro/macro
                 - f1 score micro/macro
         """
-        metrics = {
+        multi_clf_metrics = {
             "accuracy": metrics.accuracy_score(self._y_test, y_pred),
             "precision_micro": metrics.precision_score(self._y_test, y_pred,
                 average="micro"),
@@ -47,4 +49,4 @@ class Multi_Classification(Method):
                 y_pred, average="macro")
         }
 
-        return {key : metrics}
+        return multi_clf_metrics

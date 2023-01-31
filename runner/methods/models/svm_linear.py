@@ -10,7 +10,7 @@ class SVM_Linear(Model):
     """
 
     # params need to be test
-    def __init__(self, X_train, y_train, X_test, nb_folds ,
+    def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
         params = {
             'tol': np.linspace(1e-5, 1e-2, 5),
             'C': np.linspace(1e-3, 1, 5)
@@ -28,7 +28,8 @@ class SVM_Linear(Model):
                     'C': np.linspace(1e-3, 1, 5)
                 }.
         """
-        super().__init__(X_train, y_train, X_test, nb_folds)
+        super().__init__(X_train, y_train, X_test, nb_folds,
+            consumption_method)
 
         self.__parameters = params
         self.__grid = GridSearchCV(LinearSVC(), params,
@@ -41,14 +42,15 @@ class SVM_Linear(Model):
         Returns:
             float: measure.
         """
-        if self.__measurement is None:
+        if self._measurement is None:
+            self.__grid.fit(self._X_train, self._y_train)
             return_value = None
         else :
             # training measure
-            self.__measurement.begin()
+            self._measurement.begin()
             self.__grid.fit(self._X_train, self._y_train)
-            self.__measurement.end()
-            return_value = self.__measurement.convert()
+            self._measurement.end()
+            return_value = self._measurement.convert()
         return return_value
     
     def predict(self):
