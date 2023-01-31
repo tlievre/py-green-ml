@@ -11,19 +11,18 @@ from keras.layers import Dense
 from keras.callbacks import EarlyStopping
 
 
-
 class Perceptron(Model):
-    """Linear support vector machine class. It uses LinearSVC() from
-    sklearn.svm. Inherit from Model abstract class.
+    """Perceptron class. It uses KerasClassifier from
+    scikeras.wrapper. Inherit from Model abstract class.
     """
 
     # params need to be test
-    def __init__(self, X_train, y_train, X_test, nb_folds ,
-        params = {
-            'optimizer__learning_rate': [1e-3,1e-4,1e-5],
-            'batch_size': [8,16,32],
-            'epochs' :[100]
-        }):
+    def __init__(self, X_train, y_train, X_test, nb_folds,
+                 params={
+                     'optimizer__learning_rate': [1e-3, 1e-4, 1e-5],
+                     'batch_size': [8, 16, 32],
+                     'epochs': [100]
+                 }):
         """
         Args:
             X_train (pd.DataFrame): Train set predictors.
@@ -41,46 +40,44 @@ class Perceptron(Model):
         super().__init__(X_train, y_train, X_test, nb_folds)
 
         self.__parameters = params
-        
-        n_classes = len(np.unique(self._y_train))
-        if(n_classes == 2):
-            loss = 'binary_crossentropy'
-            act = 'sigmoid'
-        
+
+        self._input_shape = (np.shape(X_train)[1],)
+
+        self._n_classes = len(np.unique(self._y_train))
+        if (self._n_classes == 2):
+            self._loss = 'binary_crossentropy'
+            self._act = 'sigmoid'
+
         else:
-            loss = 'categorical_crossentropy'
-            act = 'softmax'
-            
+            self._loss = 'categorical_crossentropy'
+            self._act = 'softmax'
+
+        early_stop = EarlyStopping("val_loss", patience=5)
+
         def build_net():
+            """ Build the network. Will be call by KerasClassifier.
             """
-            """
-            
+
             net = Sequential()
-            net.add(Dense(n_classes,input_shape=(np.shape(X_train)[1],),activation=act))
+            net.add(Dense(self._n_classes,
+                    input_shape=self._input_shape, activation=self._act))
             return net
-        
-        early_stop = EarlyStopping("val_loss",patience=5)
-        
+
         self._Net = KerasClassifier(model=build_net,
                                     verbose=1,
                                     callbacks=early_stop,
-                                    optimizer= "adam",
-                                    loss=loss)
-        
-        self._grid = GridSearchCV(estimator = self._Net, param_grid = params, cv = self._nb_folds, n_jobs=1,verbose = True)
+                                    optimizer="adam",
+                                    loss=self._loss)
 
-
+        self._grid = GridSearchCV(
+            estimator=self._Net, param_grid=params, cv=self._nb_folds, n_jobs=1, verbose=True)
 
     def fit_cv(self):
-        """.
+        """.Compute the training and the cross validation of the model Perceptron.
         """
-        
+
         self._grid.fit(self._X_train, self._y_train)
-        
-        
-        
-        
-    
+
     def predict(self):
         """Compute the predicted response vector 
         """
