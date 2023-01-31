@@ -4,7 +4,7 @@ import json
 import pandas as pd
 import importlib
 
-# from exception import Exception
+from exception import EmptyModelsNameList
 
 #/!\ add when measure methods will be implement
 # from measure import PyRaplMeasurement, CodeCarbonMeasurement
@@ -16,23 +16,23 @@ class Runner() :
     
     def __init__(self, config) :
         """
-        Args:
+        Attributes:
             config (dict): contain all parameters of a Method object.
             the dictionnary should be organized like below :
                 - name : str
                 - path : str
                 - task : str
                 - y : array
-                - token : str
+                - token : list
                 - folds : int
             model_path (str): path of the machine learning model.
         """
-        # config load
-        # /!\ types should be test
+        # config loading
         self._data_name = config["name"]
         self._data_path = config["path"]
         self._data_y_var = config["y"]
         self._nb_folds = config["folds"]
+
 
         # get the measure method
         if (measure := config["measure"]) == None:
@@ -63,18 +63,28 @@ class Runner() :
         # fetch suitable task and token
         # task and token to test
         task = config["task"]
-        token = config["mod_token"]
+        mod_tokens = config["mod_tokens"]
+
+        # read the models.json file
         with open("greenml/models.json") as f:
             token_list = json.load(f)
-        tok = token_list[task][token]
+
+        try:
+            models_name = [model for _,model in token_list[task].items() if model in mod_tokens]
+        except KeyError as err:
+            print("{} isn't refer in the dictionnary".format(err))
+            raise
         
+        # check empty list
+        if not models_name:
+            raise EmptyModelsNameList("models_name is currently empty") 
 
         # get the suitable method class
         try :
             method_path = "greenml.runner.methods." + task.lower()
             method = importlib.import_module(method_path)
             constr_method = getattr(method, task)
-            self._method = constr_method(data_train, data_test, config["y"], tok, config["folds"])
+            self._method = constr_method(data_train, data_test, config["y"], models_name, config["folds"])
         except (ImportError, AttributeError):
             raise ValueError("Unknown " + method_path)
 
