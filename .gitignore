@@ -1,6 +1,10 @@
 __pycache__/*
 .vscode
 models/__pycache__/*
-runners/__pycache__/*
+runner/__pycache__/*
 tests/__pycache__/*
 GreenML.egg-info/*
+runner/methods/__pycache__/*
+runner/methods/models/__pycache__/*
+models/measure/__pycache__/*
+runner/methods/models/measure/__pycache__/*

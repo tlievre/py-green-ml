@@ -2,8 +2,10 @@
 
 ## Table of Contents
 
-1. [Description](#description)
-2. [Installation](#installation)
+- [GreenML](#greenml)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Installation](#installation)
 
 
 ## Description
@@ -11,3 +13,7 @@
 Computes machine learning algorithms energy consumption
 
 ## Installation
+
+```
+pip install -r requirements.txt
+```
