@@ -7,7 +7,7 @@
         "d_tree" : "Decision_Tree",
         "perceptron" : "Perceptron"
     },
-    "Bin_Classification" : 
+    "Binary_Classification" : 
     {
         "svm_l" : "SVM_Linear",
         "log_reg" : "Logistic_Regression",

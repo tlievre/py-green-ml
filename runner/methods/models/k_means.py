@@ -2,9 +2,10 @@ from greenml.runner.methods.models.model import Model
 from sklearn.cluster import KMeans
 from sklearn.model_selection import GridSearchCV
 
+
 class K_Means(Model):
 
-    def __init__(self, X_train, y_train, X_test, nb_folds,
+    def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
         params = {
             'n_clusters' : [i for i in range(1, 20)], # /!\ max clusters
             'algorithm' : ["loyd", "elkan"] # auto and full deprecated
@@ -23,7 +24,8 @@ class K_Means(Model):
                     'algorithm' : ["loyd", "elkan"]
                 }.
         """
-        super().__init__(X_train, y_train, X_test, nb_folds)
+        super().__init__(X_train, y_train, X_test, nb_folds,
+            consumption_method)
         self.__parameters = params
         self.__grid = GridSearchCV(KMeans(n_init = 'auto'), params,
             cv = self._nb_folds, verbose = True)
@@ -33,9 +35,18 @@ class K_Means(Model):
         """Compute the predicted response vector given sklearn trained KMeans.
 
         Returns:
-            array: 1-D predicted repsonse vector
+            float: measure.
         """
-        self.__grid.fit(self._X_train, self._y_train)
+        if self._measurement is None:
+            self.__grid.fit(self._X_train, self._y_train)
+            return_value = None
+        else :
+            # training measure
+            self._measurement.begin()
+            self.__grid.fit(self._X_train, self._y_train)
+            self._measurement.end()
+            return_value = self._measurement.convert()
+        return return_value
 
 
     def predict(self):

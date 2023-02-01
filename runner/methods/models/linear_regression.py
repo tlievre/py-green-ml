@@ -3,12 +3,13 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import GridSearchCV
 
 
+
 class Linear_Regression(Model):
     """Linear regression machine class. It uses LinearRegression() from
     sklearn.svm. Inherit from Model abstract class.
     """
 
-    def __init__(self, X_train, y_train, X_test, nb_folds,
+    def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
         params = {
             'positive' : [True, False],
             'fit_intercept' : [True, False]} # not necessary
@@ -26,7 +27,8 @@ class Linear_Regression(Model):
                     'fit_intercept' : [True, False]
                 }.
         """
-        super().__init__(X_train, y_train, X_test, nb_folds)
+        super().__init__(X_train, y_train, X_test, nb_folds,
+            consumption_method)
         self.__parameters = params
         self.__grid = GridSearchCV(LinearRegression(), params,
             cv = self._nb_folds, verbose = True)
@@ -35,9 +37,18 @@ class Linear_Regression(Model):
         """Compute the predicted response vector given by the trained linear regression.
 
         Returns:
-            array: 1-D predicted repsonse vector
+            float: measure.
         """
-        self.__grid.fit(self._X_train, self._y_train)
+        if self._measurement is None:
+            self.__grid.fit(self._X_train, self._y_train)
+            return_value = None
+        else :
+            # training measure
+            self._measurement.begin()
+            self.__grid.fit(self._X_train, self._y_train)
+            self._measurement.end()
+            return_value = self._measurement.convert()
+        return return_value
     
     def predict(self):
         """Compute the predicted response vector given sklearn trained model.

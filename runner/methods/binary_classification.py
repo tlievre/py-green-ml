@@ -1,6 +1,5 @@
-from sklearn import metrics
-from sklearn.exceptions import NotFittedError
 from greenml.runner.methods.method import Method
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 class Binary_Classification(Method):
     """Binary classification, could use the following implemented model :
@@ -14,8 +13,12 @@ class Binary_Classification(Method):
     Inherit from Method abstract class.
     """
 
-    def get_metrics(self):
-        """compute the binary classification metrics.
+    def _compute_metrics(self, y_pred):
+        """compute metrics of a binary classification fitted model.
+
+        Args:
+            key (str): Key of the returned dictionnary.
+            y_pred (array): Predicted vector 1-D of a fitted model. 
 
         Returns :
             dict : It gives the metrics below :
@@ -24,20 +27,10 @@ class Binary_Classification(Method):
                 - recall
                 - F1-score
         """
-        try: 
-            y_pred = self._model.predict()
-        except NotFittedError as e: # catch non fitted model error
-            print(repr(e))
-            raise
-
-        acc = metrics.accuracy_score(self._y_test, y_pred)
-        prec = metrics.precision_score(self._y_test, y_pred)
-        rec = metrics.recall_score(self._y_test, y_pred)
-        f1 = metrics.f1_score(self._y_test, y_pred)
-
-        return {
-            "accuracy": acc,
-            "precision": prec,
-            "recall": rec,
-            "f1": f1
+        metrics = {
+            "accuracy": accuracy_score(self._y_test, y_pred),
+            "precision": precision_score(self._y_test, y_pred),
+            "recall": recall_score(self._y_test, y_pred),
+            "f1": f1_score(self._y_test, y_pred)
         }
+        return metrics

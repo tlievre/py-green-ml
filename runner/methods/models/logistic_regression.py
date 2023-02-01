@@ -2,6 +2,7 @@ from greenml.runner.methods.models.model import Model
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GridSearchCV
 
+
 import numpy as np
 
 class Logistic_Regression(Model):
@@ -9,7 +10,7 @@ class Logistic_Regression(Model):
     Inherit from Model abstract class
     """
 
-    def __init__(self, X_train, y_train, X_test, nb_folds,
+    def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
         params = {
             'tol': np.linspace(1e-5, 1e-2, 5),
             'C': np.linspace(1e-3, 1, 5),
@@ -32,7 +33,8 @@ class Logistic_Regression(Model):
                     'solver' : ['lbfgs', 'liblinear', 'newton-cg','newton-cholesky', 'sag', 'saga']
                 }.
         """
-        super().__init__(X_train, y_train, X_test, nb_folds)
+        super().__init__(X_train, y_train, X_test, nb_folds,
+            consumption_method)
         self.__parameters = params
         self.__grid = GridSearchCV(LogisticRegression(), params,
             cv = self._nb_folds, verbose = True)
@@ -42,9 +44,18 @@ class Logistic_Regression(Model):
         logistic regression.
 
         Returns:
-            array: 1-D predicted repsonse vector
+            float: measure or None.
         """
-        self.__grid.fit(self._X_train, self._y_train)
+        if self._measurement is None:
+            self.__grid.fit(self._X_train, self._y_train)
+            return_value = None
+        else :
+            # training measure
+            self._measurement.begin()
+            self.__grid.fit(self._X_train, self._y_train)
+            self._measurement.end()
+            return_value = self._measurement.convert()
+        return return_value
 
     def predict(self):
         """Compute the predicted response vector given sklearn trained model
