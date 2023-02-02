@@ -7,8 +7,9 @@ class Decision_Tree(Model):
     def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
         params = {
             'criterion': ["gini", "entropy", "log_loss"],
-            'splitter': ["best", "random"],
-            'max_features' : ["auto", "sqrt", "log2"]}
+            'max_features' : [None, "sqrt", "log2"],
+            'max_depth': [50,100,200,500],
+            'class_weight':[None,"balanced"]}
         ):
         """
         Args:
@@ -17,7 +18,13 @@ class Decision_Tree(Model):
             X_test (pd.DataFrame): Test set predictors.
             nb_folds (int): Folds numbers used in cross validation.
             params (dict, optional): Contains listes of tuning parameters given
-            by sklearn DecisionTreeClassifier() model. Defaults to {'criterion': ["gini", "entropy", "log_loss"], 'splitter': ["best", "random"], 'max_features' : ["auto", "sqrt", "log2"]}.
+            by sklearn DecisionTreeClassifier() model. Defaults to
+            {
+                'criterion': ["gini", "entropy", "log_loss"],
+                'max_features' : [None, "sqrt", "log2"],
+                'max_depth': [50,100,200,500],
+                'class_weight':[None,"balanced"]
+            }
         """
         super().__init__(X_train, y_train, X_test, nb_folds,
             consumption_method)

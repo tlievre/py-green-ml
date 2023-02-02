@@ -12,7 +12,7 @@ class Linear_Regression(Model):
     def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
         params = {
             'positive' : [True, False],
-            'fit_intercept' : [True, False]} # not necessary
+            'fit_intercept' : [True, False]}
         ):
         """
         Args:

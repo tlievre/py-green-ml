@@ -12,8 +12,9 @@ class SVM_Linear(Model):
     # params need to be test
     def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
         params = {
-            'tol': np.linspace(1e-5, 1e-2, 5),
-            'C': np.linspace(1e-3, 1, 5)
+            'dual':[False,True],
+            'C': [0.1, 1, 10, 100, 1000],
+            'max_iter' : [1000,2000,5000]
         }):
         """
         Args:
@@ -24,8 +25,9 @@ class SVM_Linear(Model):
             params (dict, optional): Contains listes of tuning parameters given
             by sklearn LinearSVC() model. Defaults to
                 {
-                    'tol': np.linspace(1e-5, 1e-2, 5),
-                    'C': np.linspace(1e-3, 1, 5)
+                    'dual':[False,True],
+                    'C': [0.1, 1, 10, 100, 1000],
+                    'max_iter' : [1000,2000,5000]
                 }.
         """
         super().__init__(X_train, y_train, X_test, nb_folds,

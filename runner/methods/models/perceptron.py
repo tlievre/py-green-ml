@@ -17,7 +17,7 @@ class Perceptron(Model):
     """
 
     # params need to be test
-    def __init__(self, X_train, y_train, X_test, nb_folds,
+    def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
                  params={
                      'optimizer__learning_rate': [1e-3, 1e-4, 1e-5],
                      'batch_size': [8, 16, 32],
@@ -32,12 +32,12 @@ class Perceptron(Model):
             params (dict, optional): Contains listes of tuning parameters. 
                 Defaults to
                 {
-                    'learning_rate': [1e-3,1e-4,1e-5],
+                    'optimizer__learning_rate': [1e-3,1e-4,1e-5],
                     'batch_size': [8,16,32],
                     'epochs' :[100]
                 }.
         """
-        super().__init__(X_train, y_train, X_test, nb_folds)
+        super().__init__(X_train, y_train, X_test, nb_folds, consumption_method)
 
         self.__parameters = params
 
@@ -67,7 +67,8 @@ class Perceptron(Model):
                                     verbose=1,
                                     callbacks=early_stop,
                                     optimizer="adam",
-                                    loss=self._loss)
+                                    loss=self._loss,
+                                    fit__validation_split=0.2)
 
         self._grid = GridSearchCV(
             estimator=self._Net, param_grid=params, cv=self._nb_folds, n_jobs=1, verbose=True)
