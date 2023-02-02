@@ -9,7 +9,8 @@ class Naive_Bayes(Model):
     """
 
     def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
-        params = {'alpha': [0.00001, 0.0001, 0.001, 0.1, 1, 10, 100, 1000]}):
+        params = {'alpha': [0.00001, 0.0001, 0.001, 0.1, 1, 10, 100, 1000],
+                  'fit_prior':[True,False]}):
         """_summary_
 
         Args:
@@ -19,7 +20,7 @@ class Naive_Bayes(Model):
             nb_folds (int): Folds numbers used in cross validation.
             params (dict, optional): Contains listes of tuning parameters given
             by sklearn MultinomialNB() model. Defaults to 
-                {'alpha': [0.00001, 0.0001, 0.001, 0.1, 1, 10, 100, 1000]}.
+                {'alpha': [0.00001, 0.0001, 0.001, 0.1, 1, 10, 100, 1000],'fit_prior':[True,False]}.
         """
         super().__init__(X_train, y_train, X_test, nb_folds,
             consumption_method)
