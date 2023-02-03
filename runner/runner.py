@@ -36,7 +36,7 @@ class Runner() :
         self._consumption_method = config["measure"]
         
         
-        # data load /!\ à modifier dans REDIS
+        # data load
         try:
             data_train = pd.read_csv(str(self._data_path) + str(self._data_name) \
                 + "_train.csv")
