@@ -20,6 +20,7 @@ stages:
   - test_classif
 
 test_classif:
+  stage: test_classif
   script:
     - git clone https://faidideq:${CI_TOKEN}@gricad-gitlab.univ-grenoble-alpes.fr/ljk-greenml/py_green_ml greenml
     - cd greenml
