@@ -1,6 +1,7 @@
 from greenml.runner.methods.models.model import Model
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import KNeighborsRegressor
+from sklearn.model_selection import GridSearchCV
 
 
 class Knn_Classification(Model):
@@ -10,8 +11,8 @@ class Knn_Classification(Model):
     """
 
     def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
-                 params = {
-                     "n_neighboors" = [1, 3, 5, 7, 11]
+                 params={
+                     "n_neighboors"=[1, 3, 5, 7, 11]
                      }
                  ):
         super().__init__(X_train, y_train, X_test,
@@ -40,7 +41,6 @@ class Knn_Classification(Model):
     @property
     def parameters(self) -> dict:
         return self.__parameters
-
 
 
 class Knn_Regression(Model):

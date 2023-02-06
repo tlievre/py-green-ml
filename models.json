@@ -6,7 +6,8 @@
         "multi_nb" : "Naive_Bayes",
         "d_tree" : "Decision_Tree",
         "perceptron" : "Perceptron",
-        "mlp" : "MLP"
+        "mlp" : "MLP",
+	"knn" : "Knn_Classification"
     },
     "Binary_Classification" : 
     {
@@ -15,11 +16,13 @@
         "multi_nb" : "Naive_Bayes",
         "d_tree" : "Decision_Tree",
         "perceptron" : "Perceptron",
-        "mlp" : "MLP"
+        "mlp" : "MLP",
+	"Knn": "Knn_Classification"
     },
     "Regression" :
     {
-        "lin_reg" : "Linear_Regression"
+        "lin_reg" : "Linear_Regression",
+	"Knn": "Knn_Regression"
     },
     "Clustering" : 
     {
