@@ -5,7 +5,8 @@
         "log_reg" : "Logistic_Regression",
         "multi_nb" : "Naive_Bayes",
         "d_tree" : "Decision_Tree",
-        "perceptron" : "Perceptron"
+        "perceptron" : "Perceptron",
+        "mlp" : "MLP"
     },
     "Binary_Classification" : 
     {
@@ -13,7 +14,8 @@
         "log_reg" : "Logistic_Regression",
         "multi_nb" : "Naive_Bayes",
         "d_tree" : "Decision_Tree",
-        "perceptron" : "Perceptron"
+        "perceptron" : "Perceptron",
+        "mlp" : "MLP"
     },
     "Regression" :
     {
