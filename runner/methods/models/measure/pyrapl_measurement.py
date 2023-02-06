@@ -4,7 +4,9 @@ pyrapl Measurement class
 
 import pyRAPL
 
-from greenml.runner.methods.models.measure.measurement import Measure
+#from greenml.runner.methods.models.measure.measurement import Measure
+
+from measurement import Measure
 
 class PyRAPLMeasurement(Measure):
     def __init__(self):
