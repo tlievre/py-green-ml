@@ -77,3 +77,7 @@ class Method(ABC):
             raise
                 
         return models_metrics
+    
+    @property
+    def method_name(self) -> str:
+        return type(self).__name__

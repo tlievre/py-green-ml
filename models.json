@@ -4,14 +4,18 @@
         "svm_l" : "SVM_Linear",
         "log_reg" : "Logistic_Regression",
         "multi_nb" : "Naive_Bayes",
-        "d_tree" : "Decision_Tree"
+        "d_tree" : "Decision_Tree",
+        "perceptron" : "Perceptron",
+        "mlp" : "MLP"
     },
     "Binary_Classification" : 
     {
         "svm_l" : "SVM_Linear",
         "log_reg" : "Logistic_Regression",
         "multi_nb" : "Naive_Bayes",
-        "d_tree" : "Decision_Tree"
+        "d_tree" : "Decision_Tree",
+        "perceptron" : "Perceptron",
+        "mlp" : "MLP"
     },
     "Regression" :
     {

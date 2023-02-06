@@ -12,10 +12,12 @@ class Logistic_Regression(Model):
 
     def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
         params = {
-            'tol': np.linspace(1e-5, 1e-2, 5),
-            'C': np.linspace(1e-3, 1, 5),
-            'penalty' : ['None', 'l2', 'l1', 'elasticnet'],
-            'solver' : ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga']}
+            'dual' : [False],
+            'C': [0.1, 1, 10, 100, 1000],
+            'penalty' : [None,'l2', 'l1', 'elasticnet'],
+            'max_iter' : [1000],
+            'solver' : ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga']
+            }
             # The choice of the algorithm depends on the penalty chosen. Supported penalties by solve
         ):
         """
@@ -27,10 +29,11 @@ class Logistic_Regression(Model):
             params (dict, optional): Contains listes of tuning parameters given
             by sklearn Logistic_Regression() model. Defaults to 
                 { 
-                    'tol': np.linspace(1e-5, 1e-2, 5),
-                    'C': np.linspace(1e-3, 1, 5),
-                    'penalty' : ['None', 'l2', 'l1', 'elasticnet'], 
-                    'solver' : ['lbfgs', 'liblinear', 'newton-cg','newton-cholesky', 'sag', 'saga']
+                    'dual' : [False],
+                    'C': [0.1, 1, 10, 100, 1000],
+                    'penalty' : [None,'l2', 'l1', 'elasticnet'],
+                    'max_iter' : [1000],
+                    'solver' : ['lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga']
                 }.
         """
         super().__init__(X_train, y_train, X_test, nb_folds,
