@@ -8,3 +8,5 @@ runner/methods/__pycache__/*
 runner/methods/models/__pycache__/*
 models/measure/__pycache__/*
 runner/methods/models/measure/__pycache__/*
+runner/methods/models/measure/tests/__init__.py
+runner/methods/models/measure/tests/__pycache__/*
