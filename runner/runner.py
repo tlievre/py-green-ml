@@ -2,8 +2,10 @@
 
 import json
 import pandas as pd
+import numpy as np
 import importlib
 
+from numpy.random import randint
 from greenml.runner.exception import EmptyModelsNameList
 
 #/!\ add when measure methods will be implement
@@ -14,7 +16,7 @@ class Runner() :
     learning statistic methods (classification, regression, clustering ...).
     """
     
-    def __init__(self, config) :
+    def __init__(self, config, draw_rate = 2/3) :
         """
         Attributes:
             config (dict): contain all parameters of a Method object.
@@ -54,6 +56,17 @@ class Runner() :
         except Exception:
             print("Some other exception")
             raise
+
+        # random sample
+        max_train = len(data_train)
+        self.__train_lines = randint(round((draw_rate)*max_train), max_train)
+        data_train = data_train.sample(n = self.__train_lines)
+
+        random_rate = self.__train_lines / max_train
+
+        self.__test_lines = round(random_rate * len(data_test))
+        data_test = data_test.sample(n = self.__test_lines)
+        
         # fetch suitable task and token
         # task and token to test
         task = config["task"]
@@ -95,5 +108,7 @@ class Runner() :
         # get the metrics
         return {
             'measurement' : measurement,
-            'metrics' : self._method.get_metrics()
+            'metrics' : self._method.get_metrics(),
+            'nb_lines_train' : self.__train_lines,
+            'nb_lines_test' : self.__test_lines
         }
