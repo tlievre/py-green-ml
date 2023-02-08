@@ -3,26 +3,36 @@
     {
         "svm_l" : "SVM_Linear",
         "log_reg" : "Logistic_Regression",
-        "multi_nb" : "Naive_Bayes",
+        "gauss_nb" : "Naive_Bayes",
         "d_tree" : "Decision_Tree",
         "perceptron" : "Perceptron",
         "mlp" : "MLP",
-        "knn_classification" : "Knn_Classification"
+        "knn_class" : "Knn_Classification",
+        "rf_class": "Random_Forest_Classifier",
+        "svm_rbf_c": "SVM_Rbf_Classifier",
+        "svm_poly_c": "SVM_Poly_Classifier",
+        "svm_sig_c": "SVM_Sig_Classifier"
     },
     "Binary_Classification" : 
     {
         "svm_l" : "SVM_Linear",
         "log_reg" : "Logistic_Regression",
-        "multi_nb" : "Naive_Bayes",
+        "gauss_nb" : "Naive_Bayes",
         "d_tree" : "Decision_Tree",
         "perceptron" : "Perceptron",
         "mlp" : "MLP",
-        "knn_classification" : "Knn_Classification"
+        "knn_class" : "Knn_Classification",
+        "rf_class": "Random_Forest_Classifier",
+        "svm_rbf_c": "SVM_Rbf_Classifier",
+        "svm_poly_c": "SVM_Poly_Classifier",
+        "svm_sig_c": "SVM_Sig_Classifier"
     },
     "Regression" :
     {
         "lin_reg" : "Linear_Regression",
-        "knn_regression" : "Knn_Regression"
+        "knn_reg" : "Knn_Regression",
+        "rf_reg": "Random_Forest_Regressor",
+        "svm_l_reg" : "SVM_Linear_Regressor"
     },
     "Clustering" : 
     {
