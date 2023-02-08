@@ -1,5 +1,5 @@
 """script for knn regression."""
-from greenml.runner.methods.model import Model
+from greenml.runner.methods.models.model import Model
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.model_selection import GridSearchCV
 
@@ -44,12 +44,12 @@ class Knn_Regression(Model):
         :rtype: float
 
         """
-        if self._measure is None:
+        if self._measurement is None:
             self.__grid.fit(self._X_train, self._y_train)
             return_value = None
         else:
             # measurement training
-            self._measurement_begin()
+            self._measurement.begin()
             self.__grid.fit(self._X_train, self._y_train)
             self._measurement.end()
             return_value = self._measurement.convert()
