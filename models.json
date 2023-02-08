@@ -24,7 +24,8 @@
     "Regression" :
     {
         "lin_reg" : "Linear_Regression",
-        "knn_reg" : "Knn_Regression"
+        "knn_reg" : "Knn_Regression",
+        "rf_reg": "Random_Forest_Regressor"
     },
     "Clustering" : 
     {
