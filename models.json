@@ -8,7 +8,10 @@
         "perceptron" : "Perceptron",
         "mlp" : "MLP",
         "knn_class" : "Knn_Classification",
-        "rf_class": "Random_Forest_Classifier"
+        "rf_class": "Random_Forest_Classifier",
+        "svm_rbf_c": "SVM_Rbf_Classifier",
+        "svm_poly_c": "SVM_Poly_Classifier",
+        "svm_sig_c": "SVM_Sig_Classifier"
     },
     "Binary_Classification" : 
     {
@@ -19,7 +22,10 @@
         "perceptron" : "Perceptron",
         "mlp" : "MLP",
         "knn_class" : "Knn_Classification",
-        "rf_class": "Random_Forest_Classifier"
+        "rf_class": "Random_Forest_Classifier",
+        "svm_rbf_c": "SVM_Rbf_Classifier",
+        "svm_poly_c": "SVM_Poly_Classifier",
+        "svm_sig_c": "SVM_Sig_Classifier"
     },
     "Regression" :
     {
