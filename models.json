@@ -7,8 +7,7 @@
         "d_tree" : "Decision_Tree",
         "perceptron" : "Perceptron",
         "mlp" : "MLP",
-        "knn" : "Knn_Classification",
-	"knn" : "Knn_Classification"
+        "knn_classification" : "Knn_Classification"
     },
     "Binary_Classification" : 
     {
@@ -18,14 +17,12 @@
         "d_tree" : "Decision_Tree",
         "perceptron" : "Perceptron",
         "mlp" : "MLP",
-        "knn" : "Knn_Classification",
-	"Knn": "Knn_Classification"
+        "knn_classification" : "Knn_Classification"
     },
     "Regression" :
     {
         "lin_reg" : "Linear_Regression",
-        "knn" : "Knn_Regression",
-	"Knn": "Knn_Regression"
+        "knn_regression" : "Knn_Regression"
     },
     "Clustering" : 
     {
