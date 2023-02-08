@@ -31,7 +31,8 @@
     {
         "lin_reg" : "Linear_Regression",
         "knn_reg" : "Knn_Regression",
-        "rf_reg": "Random_Forest_Regressor"
+        "rf_reg": "Random_Forest_Regressor",
+        "svm_l_reg" : "SVM_Linear_Regressor"
     },
     "Clustering" : 
     {
