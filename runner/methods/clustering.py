@@ -82,7 +82,7 @@ class Clustering(Method):
             'rand_index' : rand_score(self._y_test, y_pred),
             'recall' : recall,
             'precision' : precision,
-            'f1-score' : 2 * recall * precision / (recall + precision), 
+            'f1' : 2 * recall * precision / (recall + precision), 
             'h_score' : homogeneity_score(self._y_test, y_pred),
             'fowlkes_mallows_index' : fowlkes_mallows_score(self._y_test, y_pred)
         }
