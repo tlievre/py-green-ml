@@ -37,35 +37,35 @@ class Xgb_Regressor(Model):
         self.__grid = GridSearchCV(XGBRegressor(), params,
                                    cv=self._nb_folds, verbose=True)
 
-        def fit_cv(self):
-            """Compute the predicted response vector\
-            given by the trained xgboost regressor.
+    def fit_cv(self):
+        """Compute the predicted response vector\
+        given by the trained xgboost regressor.
 
-            :returns:
-            :rtype:
+        :returns:
+        :rtype:
 
-            """
-            if self._measurement is None:
-                self.__grid.fit(self._X_train, self._y_train)
-                return_value = None
-            else:
-                # training measure
-                self._measurement.begin()
-                self.__grid.fit(self._X_train, self._y_train)
-                self._measurement.end()
-                return_value = self._measurement.convert()
-            return return_value
+        """
+        if self._measurement is None:
+            self.__grid.fit(self._X_train, self._y_train)
+            return_value = None
+        else:
+            # training measure
+            self._measurement.begin()
+            self.__grid.fit(self._X_train, self._y_train)
+            self._measurement.end()
+            return_value = self._measurement.convert()
+        return return_value
 
-        def predict(self):
-            """Compute the predicted response vector\
-            given sklearn trained Knn.
+    def predict(self):
+        """Compute the predicted response vector\
+        given sklearn trained Knn.
 
-            :returns: 1-D predicted response vector
-            :rtype: np.array
+        :returns: 1-D predicted response vector
+        :rtype: np.array
 
-            """
-            return self.__grid.predict(self._X_test)
+        """
+        return self.__grid.predict(self._X_test)
 
-        @property
-        def parameters(self) -> dict:
-            return self.__parameters
+    @property
+    def parameters(self) -> dict:
+        return self.__parameters
