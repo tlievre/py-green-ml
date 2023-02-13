@@ -11,7 +11,8 @@
         "rf_class": "Random_Forest_Classifier",
         "svm_rbf_c": "SVM_Rbf_Classifier",
         "svm_poly_c": "SVM_Poly_Classifier",
-        "svm_sig_c": "SVM_Sig_Classifier"
+        "svm_sig_c": "SVM_Sig_Classifier",
+        "xgb_class" : "Xgb_Classifier"
     },
     "Binary_Classification" : 
     {
@@ -25,14 +26,16 @@
         "rf_class": "Random_Forest_Classifier",
         "svm_rbf_c": "SVM_Rbf_Classifier",
         "svm_poly_c": "SVM_Poly_Classifier",
-        "svm_sig_c": "SVM_Sig_Classifier"
+        "svm_sig_c": "SVM_Sig_Classifier",
+        "xgb_class" : "Xgb_Classifier"
     },
     "Regression" :
     {
         "lin_reg" : "Linear_Regression",
         "knn_reg" : "Knn_Regression",
         "rf_reg": "Random_Forest_Regressor",
-        "svm_l_reg" : "SVM_Linear_Regressor"
+        "svm_l_reg" : "SVM_Linear_Regressor",
+        "xgb_regression" : "Xgb_Regressor"
     },
     "Clustering" : 
     {
