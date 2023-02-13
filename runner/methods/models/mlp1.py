@@ -7,11 +7,11 @@ from tensorflow import keras
 
 from scikeras.wrappers import KerasClassifier
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 from keras.callbacks import EarlyStopping
 
 
-class Perceptron(Model):
+class MLP1(Model):
     """Perceptron class. It uses KerasClassifier from
     scikeras.wrapper. Inherit from Model abstract class.
     """
@@ -19,6 +19,8 @@ class Perceptron(Model):
     # params need to be test
     def __init__(self, X_train, y_train, X_test, nb_folds, consumption_method,
                  params={
+                     'model__nh_layers' : [1],
+                     'model__dropout': [0,0.2],
                      'optimizer__learning_rate': [1e-3, 1e-4, 1e-5],
                      'batch_size': [8, 16, 32],
                      'epochs': [100]
@@ -32,6 +34,8 @@ class Perceptron(Model):
             params (dict, optional): Contains listes of tuning parameters. 
                 Defaults to
                 {
+                    'model__nh_layers' : [1,2,3],
+                    'model__dropout': [0,0.2],
                     'optimizer__learning_rate': [1e-3,1e-4,1e-5],
                     'batch_size': [8,16,32],
                     'epochs' :[100]
@@ -56,13 +60,22 @@ class Perceptron(Model):
 
         early_stop = EarlyStopping("val_loss", patience=5)
 
-        def build_net():
+        def build_net(nh_layers,dropout):
             """ Build the network. Will be call by KerasClassifier.
             """
-
+            
             net = Sequential()
-            net.add(Dense(out,
-                    input_shape=self._input_shape, activation=self._act))
+            
+            for i in range(nh_layers):
+                neurones = 2**(i+2)
+                if i == 0:
+                    net.add(Dense(neurones,input_shape=self._input_shape, activation='relu'))
+                else:
+                    net.add(Dense(neurones, activation='relu'))
+                    
+                net.add(Dropout(dropout))
+            
+            net.add(Dense(out, activation=self._act))
             return net
 
         self._Net = KerasClassifier(model=build_net,
