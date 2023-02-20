@@ -43,6 +43,7 @@
     },
     "Clustering" : 
     {
-        "k_means" : "K_Means"
+        "k_means" : "K_Means",
+        "mb_kmeans" : "Mb_Kmeans"
     }
 }
